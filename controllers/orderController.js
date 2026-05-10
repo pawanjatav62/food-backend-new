@@ -2,7 +2,11 @@ import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2025-04-30.basil",
+});
 
 // ================= PLACE ORDER =================
 const placeOrder = async (req, res) => {
@@ -70,12 +74,12 @@ const placeOrder = async (req, res) => {
       mode: "payment",
       // success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
 
-      success_url = "https://food-frontend-new-7qzm.vercel.app/verify?success=true&orderId="+newOrder._id,
+      success_url : "https://food-frontend-new-7qzm.vercel.app/verify?success=true&orderId="+newOrder._id,
 
 
       // cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
 
-     cancel_url = "https://food-frontend-new-7qzm.vercel.app/verify?success=false&orderId="+newOrder._id,
+     cancel_url : "https://food-frontend-new-7qzm.vercel.app/verify?success=false&orderId="+newOrder._id,
 
 
     });
